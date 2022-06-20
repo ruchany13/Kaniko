@@ -25,5 +25,7 @@ jobs:
           cache: true
           cache-repository: ghcr.io/${{ github.repository }}/cache
 
-
+      - name: Build Docker Image
+        id: docker_build
+        run:  docker build . --file Dockerfile --tag kaniko1:cdns-development-$(echo ${GITHUB_SHA} | cut -c1-8)
 
