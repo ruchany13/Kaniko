@@ -1,0 +1,14 @@
+name: Pipeline
+on:
+  push:
+    branches: [ main ]
+jobs:      
+  pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build Docker Image
+      id: docker_build
+      run:  docker build . --file Dockerfile --tag $IMAGE_NAME:denmee-$(echo ${GITHUB_SHA} | cut -c1-8)
