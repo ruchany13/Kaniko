@@ -23,21 +23,7 @@ jobs:
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
           cache: true
-          cache-repository: ghcr.io/${{ github.repository }}/cache      
-  pipeline:
-  
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@master
-      - name: Build Docker Image
-        id: docker_build
-        run:  docker build . --file Dockerfile 
-      - name: Log into Docker.IO
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username ${{ secrets.DOCKER_USERNAME }} 
-
-      - name: Push image
-        run : docker push hello1 --all-tags
+          cache-repository: ghcr.io/${{ github.repository }}/cache
 
 
 
