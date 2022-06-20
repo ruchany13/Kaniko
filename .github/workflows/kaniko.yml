@@ -3,7 +3,20 @@ on:
   push:
     branches: [ main ]
 jobs:
+  build2:
+    if: github.event.head_commit.message == 'kaniko2' 
 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Kaniko build
+        uses: aevea/action-kaniko@master
+        with:
+          image: aevea/kaniko
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          cache: true
+          cache_registry: aevea/cache
   build:
     if: github.event.head_commit.message == 'kaniko' 
 
