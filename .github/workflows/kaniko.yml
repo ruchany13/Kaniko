@@ -18,7 +18,7 @@ jobs:
         uses: aevea/action-kaniko@master
         with:
           registry: docker.pkg.github.com
-          password: ${{ secrets.GITHUB_TOKEN | base64}}
+          password: ${{ secrets.DOCKER_PASSWORD}}
           build_file: ./Dockerfile
           image: kaniko1
           tag: ${{ steps.slug.outputs.sha8 }}
