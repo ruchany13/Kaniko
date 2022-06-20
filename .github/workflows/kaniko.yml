@@ -11,4 +11,4 @@ jobs:
 
     - name: Build Docker Image
       id: docker_build
-      run:  docker build . --file Dockerfile --tag $IMAGE_NAME:denmee-$(echo ${GITHUB_SHA} | cut -c1-8)
+      run:  docker build . --file Dockerfile 
