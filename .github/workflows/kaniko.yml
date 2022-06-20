@@ -4,7 +4,7 @@ on:
     branches: [ main ]
 jobs:
   build2:
-    if: github.event.head_commit.message == 'kaniko2' 
+    if: github.event.head_commit.message == 'kaniko2'  
 
     runs-on: ubuntu-latest
     steps:
