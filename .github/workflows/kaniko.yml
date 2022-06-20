@@ -8,6 +8,11 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
+
+      - name: Get short SHA
+        id: slug
+        run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
      
       - name: GitHub Package Registry
         uses: aevea/action-kaniko@master
