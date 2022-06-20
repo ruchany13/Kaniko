@@ -9,6 +9,7 @@ jobs:
     if: github.event.head_commit.message == 'deploy'
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Build Docker Image
       id: docker_build
       run:  docker build . --file Dockerfile --tag kaniko2:cdns-development-$(echo ${GITHUB_SHA} | cut -c1-8)
