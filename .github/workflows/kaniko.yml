@@ -19,7 +19,7 @@ jobs:
         with:
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.GITHUB_TOKEN}}
+          password: ${{ secrets.DOCKERHUB_PASSWORD}}
           build_file: ./Dockerfile
           image: kaniko1
           tag: ${{ steps.slug.outputs.sha8 }}
