@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Build Docker Image
       id: docker_build
-      run:  docker build . --file Dockerfile 
+      run:  docker build . --file Dockerfile --tag kaniko1:cdns-development-$(echo ${GITHUB_SHA} | cut -c1-8)
 
     - name: Show Images
       run : docker images
