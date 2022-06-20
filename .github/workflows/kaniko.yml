@@ -8,27 +8,20 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: docker/metadata-action@v3 
-        id: metadata
+     
+      - name: GitHub Package Registry
+        uses: aevea/action-kaniko@master
         with:
-          images: ghcr.io/${{ github.repository }}
-      - uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
+          registry: docker.pkg.github.com
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: int128/kaniko-action@v1
-        with:
-          push: true
-          tags: ${{ steps.metadata.outputs.tags }}
-          labels: ${{ steps.metadata.outputs.labels }}
+          build_file: ./Dockerfile
+          image: nginx-kubesandclouds
+          tag: ${{ steps.slug.outputs.sha8 }}
           cache: true
-          cache-repository: ghcr.io/${{ github.repository }}/cache
+          cache_registry: cache
 
-      - name: Build Docker Image
-        id: docker_build
-        run:  docker build . --file Dockerfile --tag kaniko1:cdns-development-$(echo ${GITHUB_SHA} | cut -c1-8)
+
+
       - name: Show Images
         run : docker images
 
