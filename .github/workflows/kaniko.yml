@@ -13,7 +13,7 @@ jobs:
         id: docker_build
         run:  docker build . --file Dockerfile 
       - name: Log into Docker.IO
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username ${{ secrets.DOCKER_USERNAME }} 
 
       - name: Push image
         run : docker push hello1 --all-tags
